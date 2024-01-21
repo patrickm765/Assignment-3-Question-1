@@ -1,7 +1,7 @@
-pip install googletrans 
-pip install textblob
+# pip install googletrans 
+# pip install textblob
 
-from tkinter import
+from tkinter import*
 import googletrans
 import textblob
 from tkinter import ttk,messagebox
@@ -9,8 +9,12 @@ from tkinter import ttk,messagebox
 
 root = Tk()
 root.title('Assignment 3 - Question 1')
-root.iconbitmap('?') #insert the icon of charles darwin university if possible
+#root.iconbitmap('') #insert the icon of charles darwin university if possible
 root.geometry("880x300") #optimise this size
+
+def clear():
+    original_text.delete(1.0, END)
+    translated_text.delete(1.0, END)
 
 # define the functions
 def translate_it(): 
@@ -19,32 +23,29 @@ def translate_it():
     try:
         # Get the from language key
         for key, value in languages.items():
-            if (value == original_combo.get())
+            if (value == original_combo.get()):
                 from_language_key = key
+                    
         # get the to language key
         for key, value in languages.items():
-            if (value == translated_combo.get())
+            if (value == translated_combo.get()):
                 to_language_key = key
         # This turns original text into a text blob
         words = textblob.TextBlob(original_text.get(1.0, END))
 
         # Translate text 
-        words = words.translate(from_language=from_language_key, to=to_language_key)
+        words = words.translate(from_lang=from_language_key, to=to_language_key)
 
         # Output Translated text to the screen  
         translated_text.insert(1.0, words)
 
     except Exception as e:
-        messagebox.showerror("Translator", e
-
-def clear():
-    # this is how we delete things from the text boxes
-    original_text.delete(1.0, END)
-    translated_text.delete(1.0, END)
+        messagebox.showerror("Translator", e)
+                             
 
 languages = googletrans.LANGUAGES
 
-language_list = list(language.values())
+language_list = list(languages.values())
 
 # text boxes
 original_text = Text(root, height=10, width=40) # change box sizes to suit what we want to do
@@ -66,8 +67,8 @@ translated_combo.current(1) # this brings up the default language
 translated_combo.grid(row=1, column=2)
 
 # refresh button
-refresh_button = Button(root, text="Refresh" , command=clear
-refresh_button.grid(row=2, column= 1)
+Clear_button = Button(root, text="Refresh" , command=clear)
+Clear_button.grid(row = 2, column = 1)
 
 
 root.mainloop()
