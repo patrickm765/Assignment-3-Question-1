@@ -24,12 +24,12 @@ def translate_it():
     try:
         # This is how we have the 'from' language key
         for key, value in languages.items():
-            if (value == original_combo.get()):
+            if (value == original_combo.get().upper()):
                 from_language_key = key
                     
         # This is how we have the 'to' language key
         for key, value in languages.items():
-            if (value == translated_combo.get()):
+            if (value == translated_combo.get().upper()):
                 to_language_key = key
 
         # This turns original text into a text blob
