@@ -1,5 +1,5 @@
-# pip install googletrans 
-# pip install textblob
+# pip install googletrans - this is used to install google translate
+# pip install textblob - this is to ensure pyou have textblob, is required for this code
 
 from tkinter import*
 import googletrans
@@ -12,33 +12,36 @@ root.title('Assignment 3 - Question 1')
 #root.iconbitmap('') #insert the icon of charles darwin university if possible
 root.geometry("880x300") #optimise this size
 
-def clear():
+# Below is how we have defined the functions of the buttons
+def clear(): 
     original_text.delete(1.0, END)
     translated_text.delete(1.0, END)
 
-# define the functions
 def translate_it(): 
     # Delete any previous translations
     translated_text.delete(1.0, END)
+    # We had to add a try box (add the reason why)
     try:
-        # Get the from language key
+        # This is how we have the 'from' language key
         for key, value in languages.items():
             if (value == original_combo.get()):
                 from_language_key = key
                     
-        # get the to language key
+        # This is how we have the 'to' language key
         for key, value in languages.items():
             if (value == translated_combo.get()):
                 to_language_key = key
+
         # This turns original text into a text blob
         words = textblob.TextBlob(original_text.get(1.0, END))
 
-        # Translate text 
+        # This function translates the text 
         words = words.translate(from_lang=from_language_key, to=to_language_key)
 
-        # Output Translated text to the screen  
+        # This function is the output of the translated text to the screen  
         translated_text.insert(1.0, words)
 
+        # This is for the error of the translator if the translator cant translate a sentence 
     except Exception as e:
         messagebox.showerror("Translator", e)
                              
@@ -57,7 +60,7 @@ translate_button.grid(row=0, column=1, padx=10)
 translated_text = Text(root, height=10, width=40) # change box sizes to suit what we want to do
 translated_text.grid(row=0, column=2, pady=20, padx=10) # pady brings it down from the top and padx brings it from the left towards the middle
 
-# combo boxes
+# combo boxes of both the original or input and the translated or output
 original_combo = ttk.Combobox(root, width=50, value=language_list)
 original_combo.current(21) # this brings up english as the first language as this is the most spoken language therefore we want it to be the default
 original_combo.grid(row=1, column=0)
@@ -66,7 +69,7 @@ translated_combo = ttk.Combobox(root, width=50, value=language_list)
 translated_combo.current(1) # this brings up the default language 
 translated_combo.grid(row=1, column=2)
 
-# refresh button
+# refresh button to clear the text in the text boxes
 Clear_button = Button(root, text="Refresh" , command=clear)
 Clear_button.grid(row = 2, column = 1)
 
