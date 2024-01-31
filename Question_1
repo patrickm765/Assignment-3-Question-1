@@ -7,7 +7,7 @@ import textblob
 from tkinter import ttk,messagebox
 
 
-root = Tk()
+root = Tk() # This command opens the the tkinter pop up box
 root.title('Assignment 3 - Question 1')
 #root.iconbitmap('') #insert the icon of charles darwin university if possible
 root.geometry("880x320") #optimise this size
@@ -50,31 +50,29 @@ languages = googletrans.LANGUAGES
 
 language_list = list(languages.values())
 
+# Below is how we have added labels to the text boxes
 text = Label(root, text = "Translated text",  font = "Helvetica 15 bold")
-text.grid(row =0, column = 3)
+text.grid(row =0, column=3)
 
 text = Label(root, text = "Language input text",  font = "Helvetica 15 bold")
-text.grid(row =0, columnspan=2)
+text.grid(row=0, columnspan=2)
 
 text = Label(root, text = "Select Input Language")
-text.grid(sticky=W, row =2, column = 0, padx= 15)
+text.grid(sticky=W, row=2, column=0, padx=15)
 
 text = Label(root, text = "Select Output Language")
-text.grid(sticky=W, row=2, column=3, padx= 15)
+text.grid(sticky=W, row=2, column=3, padx=15)
 
 # text boxes
 original_text = Text(root, height=10, width=38) # change box sizes to suit what we want to do
 original_text.grid(row=1, columnspan=2, padx= 15) # column span brings the box across 2 columns
 
-# activation button
-translate_button = Button(root, text = "Translate", font= ("Helvetica", 24 ), command=translate_it) # customise the font and size for the button
-translate_button.grid(row=1, column=2, padx=5, pady= 5)
-
-
 translated_text = Text(root, height=10, width=40) # change box sizes to suit what we want to do
 translated_text.grid(row=1, column=3, padx= 15, pady= 5) # pady brings it down from the top and padx brings it from the left towards the middle
 
-
+# activation button
+translate_button = Button(root, text = "Translate", font= ("Helvetica", 24 ), command=translate_it) # customise the font and size for the button
+translate_button.grid(row=1, column=2, padx=5, pady= 5)
 
 # combo boxes of both the original or input and the translated or output
 original_combo = ttk.Combobox(root, width=20, value=language_list)
@@ -89,5 +87,4 @@ translated_combo.grid(sticky=E, row=2, column=3, padx= 25, pady= 5)
 Clear_button = Button(root, text="Refresh" , command=clear, width = 15) # properties of the clear button 
 Clear_button.grid(row = 3, column = 2, pady = 20)
 
-
-root.mainloop()
+root.mainloop() # This command closes the the tkinter pop up box
